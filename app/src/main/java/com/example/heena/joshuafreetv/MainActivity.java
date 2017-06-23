@@ -1,6 +1,8 @@
 package com.example.heena.joshuafreetv;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -18,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.viewpagerindicator.CirclePageIndicator;
@@ -134,7 +137,21 @@ public class MainActivity extends FragmentActivity {
             @Override
             public void onPageSelected(int position) {
                 currentPage = position;
-
+                  if(currentPage==1){
+                      Thread timerThread = new Thread(){
+                          public void run(){
+                              try{
+                                  sleep(2000);
+                              }catch(InterruptedException e){
+                                  e.printStackTrace();
+                              }finally{
+                                  Intent intent = new Intent(MainActivity.this,HomeScren.class);
+                                  startActivity(intent);
+                              }
+                          }
+                      };
+                      timerThread.start();
+                  }
             }
 
             @Override
